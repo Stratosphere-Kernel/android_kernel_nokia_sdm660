@@ -821,7 +821,7 @@ static struct cftype files[] = {
 	{ }	/* terminate */
 };
 
-static void
+static int
 schedtune_boostgroup_init(struct schedtune *st, int idx)
 {
 	struct boost_groups *bg;
