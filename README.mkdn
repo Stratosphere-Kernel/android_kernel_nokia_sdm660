@@ -1,3 +1,42 @@
+<img src="http://pre06.deviantart.net/ac5b/th/pre/i/2012/218/d/1/evening_victory_by_roen911-d5a019d.jpg">
+
+# Stratosphere Kernel 
+
+##### Custom Kernel for Nokia 6.1 [plate2] running LineageOS 17.1
+
+[![Codeship Status for taalojarvi/android_kernel_nokia_sdm630](https://app.codeship.com/projects/8894bae8-2020-42d9-b804-9daee4b07aa5/status?branch=lineage-17.1)](https://app.codeship.com/projects/417987)
+
+[![Build Status](https://travis-ci.com/Stratosphere-Kernel/android_kernel_nokia_sdm660.svg?branch=lineage-17.1)](https://travis-ci.com/Stratosphere-Kernel/android_kernel_nokia_sdm660)
+
+### Features
+
+- Compiled with Proton-Clang with LLVM/Cortex A53 Optimizations
+- EAS-WALT
+- Upstreamed QCACLD-3.0 [LA.UM.8.2.r1-07400-sdm660.0]
+- Camera drivers from Nokia 351F Opensource [Support for Google Camera]
+- Maple IO Scheduler
+- Support for WireGuard 
+- Sound Control
+- Fsync Toggle Support
+- Optimizations to reduce Jitter
+- Support for TCP Congestion Algorithms
+
+### Installation
+
+- Use Franco Kernel Manager to flash Kernel zip
+Or
+- Use TWRP to flash zip
+
+## Issues
+- Wi-Fi does not work on certain ROMs, possible ROM issue as it works fine on LineageOS 17.1
+
+## Download Links
+Check releases tab :-)
+
+P.S. : This custom kernel was developed with the intention of me learning Android Kernel development. Hence it is not marketed as "stable". No warranties will be provided whatsoever and i cannot guarantee full functionality. Please flash the kernel at your own risk.
+
+
+
         Linux kernel release 4.x <http://kernel.org/>
 
 These are the release notes for Linux version 4.  Read them carefully,
