@@ -41,8 +41,6 @@ module_param(input_boost_ms, uint, 0644);
 static bool sched_boost_on_input;
 module_param(sched_boost_on_input, bool, 0644);
 
-static bool sched_boost_active;
-
 #ifdef CONFIG_DYNAMIC_STUNE_BOOST
 static int dynamic_stune_boost;
 module_param(dynamic_stune_boost, uint, 0644);

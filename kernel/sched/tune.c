@@ -879,8 +879,6 @@ schedtune_css_alloc(struct cgroup_subsys_state *parent_css)
 
 	return &st->css;
 
-release:
-	kfree(st);
 out:
 	return ERR_PTR(-ENOMEM);
 }
