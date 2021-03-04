@@ -13,7 +13,7 @@ export CROSS_COMPILE=aarch64-linux-gnu-
 export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
 export KBUILD_BUILD_USER="Taalojarvi"
 export USE_HOST_LEX=yes
-export ZipID=$TRAVIS_BUILD_NUMBER
+export ZipID=$(date +"%d-%m-%Y-%I-%M")
 export KERNEL_IMG=output/arch/arm64/boot/Image.gz-dtb
 export USE_CCACHE=1
 export CCACHE_EXEC=$( command -v ccache )
@@ -61,4 +61,4 @@ cp Stratosphere-Kernel-$ZipID.zip ~/build/taalojarvi/android_kernel_nokia_sdm660
 cd ~/build/taalojarvi/android_kernel_nokia_sdm660/Stratosphere-Canaries
 
 # Upload Flashable Zip to GitHub Releases <3
-gh release create ci-$TRAVIS_BUILD_ID Stratosphere-Kernel-$ZipID.zip -F releasenotes.md -p -t "Stratosphere Kernel: Automated Build"
+gh release create earlyaccess-$ZipID Stratosphere-Kernel-$ZipID.zip -F releasenotes.md -p -t "Stratosphere Kernel: Automated Build"
