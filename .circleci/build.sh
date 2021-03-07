@@ -10,7 +10,6 @@ START=$(date +"%s")
 KERNEL_DIR=$(pwd)
 PATH="${KERNEL_DIR}/clang/bin:${PATH}"
 export ARCH=arm64
-export KBUILD_BUILD_HOST="Circle-CI"
 export KBUILD_BUILD_USER="Taalojarvi"
 export ARCH=arm64 
 export CROSS_COMPILE=aarch64-linux-gnu-
@@ -19,7 +18,7 @@ export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
 # Make Release notes
 function note() {
 touch releasenotes.md
-echo -e "This is an Early Access build of Stratosphere Kernel. Flash at your own risk!" >> releasenotes.md
+echo -e "This is an Automated Early Access build of Stratosphere Kernel. Flash at your own risk!" >> releasenotes.md
 echo -e >> releasenotes.md
 echo -e "Build Information" >> releasenotes.md
 echo -e >> releasenotes.md
@@ -28,16 +27,16 @@ echo -e "Build URL: "$CIRCLE_BUILD_URL >> releasenotes.md
 echo -e "Build Date: $(date +%c)" >> releasenotes.md
 echo -e >> releasenotes.md
 echo -e "Last 5 Commits before Build:-" >> releasenotes.md
-git log --decorate=auto --pretty=format:'%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset %n' --graph -n 10 >> releasenotes.md
+git log --decorate=auto --pretty=format:'%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset %n' --graph -n 5 >> releasenotes.md
 echo -e >> releasenotes.md
 echo -e "Downloads available at https://www.github.com/Stratosphere-Kernel/Stratosphere-Canaries" >> releasenotes.md
-cp releasenotes.md canary
+cp releasenotes.md canary/
 }
 
 # Compiling
 function compile() {
     make O=out ARCH=arm64 stratosphere_defconfig
-    make -j$(nproc --all) CC=clang O=out/              
+    make -j$(nproc --all) CC=clang AR=llvm-ar NM=llvm-nm STRIP=llvm-strip O=out/
     if ! [ -a "$IMAGE" ]; then
         echo -e "Failed! Check your code"
         exit 1
@@ -49,8 +48,8 @@ function compile() {
 function zipping() {
     cd AnyKernel || exit 1
     zip -r9 Stratosphere-${TANGGAL}.zip *
-    cp Stratosphere-${TANGGAL}.zip canary
-    cd ..
+    cp Stratosphere-${TANGGAL}.zip ../canary
+    cd ../canary
 }
 
 # Releasing
@@ -60,6 +59,6 @@ gh release create earlyaccess-${TANGGAL} Stratosphere-${TANGGAL}.zip -F releasen
 note
 compile
 zipping
-# release
+release
 END=$(date +"%s")
 DIFF=$(($END - $START))
