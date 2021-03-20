@@ -38,8 +38,8 @@ cp releasenotes.md canary/
 
 # Compiling
 function compile() {
-    make CC=clang O=out/ ARCH=arm64 stratosphere_defconfig
-    make -j$(nproc --all) CC=clang AR=llvm-ar NM=llvm-nm STRIP=llvm-strip O=out/
+    make CC='ccache clang  -Qunused-arguments' O=out/ stratosphere_defconfig
+    make -j$(nproc --all) CC='ccache clang  -Qunused-arguments' O=out/
     if ! [ -a "$IMAGE" ]; then
         echo -e "Failed! Check your code"
         exit 1
