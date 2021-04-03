@@ -50,7 +50,7 @@ function compile() {
 # Zipping
 function zipping() {
     cd AnyKernel || exit 1
-    zip -r9 Stratosphere-${TANGGAL}.zip * -x README zipsigner.jar
+    zip -r9 Stratosphere-${TANGGAL}.zip * -x README.md zipsigner.jar LICENSE
     java -jar zipsigner.jar Stratosphere-${TANGGAL}.zip Stratosphere-${TANGGAL}-signed.zip
     cp Stratosphere-${TANGGAL}-signed.zip ../canary
     cd ../canary
