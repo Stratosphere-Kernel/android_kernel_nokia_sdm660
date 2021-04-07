@@ -33,6 +33,8 @@ jobs:
           key: ccache-{{ arch}}-{{ .Branch }}
           paths:
            - /home/circleci/.ccache
+      - store_artifacts:
+          path: /home/circleci/project/canary
 workflows:
   version: 2.1
   cooking:
